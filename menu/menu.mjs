@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import colors from 'colors';
+export { welcomeScreen, convertCelsius, convertGr, convertCm, listOptions }
 
 const welcomeScreen = () =>{
     console.log('--------------------------------'.blue);
@@ -7,45 +8,43 @@ const welcomeScreen = () =>{
     console.log('--------------------------------'.blue);
 };
 
-export {welcomeScreen};
-
 const listOptions = async () =>{
-    const respuesta = await inquirer 
+    const response = await inquirer 
         .prompt({
             type: 'list',
             name: 'opciones',
-            message: 'Seleccione la opción que desee'.blue,
+            message: 'Select the option you want'.blue,
             choices: [
                 {
                     value: 1,
-                    name: 'Peso'.yellow
+                    name: 'Weight'.yellow
                 },
                 {
                     value: 2,
-                    name: 'Longitud'.yellow
+                    name: 'Length'.yellow
                 },
                 {
                     value: 3,
-                    name: 'Temperatura'.yellow
+                    name: 'Temperature'.yellow
                 },
                 {
                     value: 4,
-                    name: 'Salir'.red
+                    name: 'Leave'.red
                 }
             ]
         })
-        return respuesta;
+        return response;
 };
 
 
 
-//Función para convertir Gr
-const convertirGr = async () =>{
+//Function to convert Gr
+const convertGr = async () =>{
     const unidad = await inquirer
         .prompt({
             type: 'number',
             name: 'unitConverter',
-            message: 'Ingrese los Gramos que desea convertir'
+            message: 'Enter (in grams) the unit you want to convert'
         })
         .then(answersgr =>{
             const gr = parseFloat(answersgr.unitConverter);
@@ -53,18 +52,17 @@ const convertirGr = async () =>{
             console.log('Gr: ', gr);
             console.log('Kg: ', gr * 0.001);
         })
+    return unidad
 }
-export {convertirGr}
 
 
-
-// Función para convertir Centímetros 
-const convertirCm = async () =>{
+// Function to convert Centimeters
+const convertCm = async () =>{
     const unidad = await inquirer
         .prompt({
             type: 'number',
             name: 'unitConverter',
-            message: 'Ingrese los Centímetros que desea convertir'
+            message: 'Enter (in centimeters) the unit you want to convert'
         })
         .then(answerscm =>{
             const cm = parseFloat(answerscm.unitConverter);
@@ -72,17 +70,17 @@ const convertirCm = async () =>{
             console.log('Cm: ', cm);
             console.log('M: ', cm * 0.01);
         })
+    return unidad
 };
-export {convertirCm}
 
 
-//Función para convertir Temperatura
-const convertirCelsius = async () =>{
+//Function to convert Temperature
+const convertCelsius = async () =>{
     const unidad = await inquirer
         .prompt({
             type: 'number',
             name: 'unitConverter',
-            message: 'Ingrese la cantidad de Celsius que desea convertir'
+            message: 'Enter (in celsius) the unit you want to convert'
         })
         .then(answerscel =>{
             const cel = parseFloat(answerscel.unitConverter);
@@ -90,8 +88,5 @@ const convertirCelsius = async () =>{
             console.log('Celsius: ', cel);
             console.log('Fahrenheit: ', ((cel * 9/5) + 32));
         })
+    return unidad
 };
-export {convertirCelsius}
-
-
-export {listOptions};
